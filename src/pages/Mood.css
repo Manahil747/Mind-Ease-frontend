@@ -1,0 +1,208 @@
+.mood-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mood-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.mood-title {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.mood-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+/* Mood Selector */
+.mood-selector-card {
+  padding: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.emoji-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 32px 0;
+  flex-wrap: wrap;
+}
+
+.mood-emoji-btn {
+  background: none;
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  cursor: pointer;
+  transition: all var(--transition-bounce);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100px;
+}
+
+.emoji {
+  font-size: 3.5rem;
+  transition: transform var(--transition-bounce);
+  line-height: 1;
+}
+
+.emoji-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: color var(--transition-fast);
+}
+
+/* Hover effects */
+.mood-emoji-btn:hover {
+  transform: translateY(-8px);
+  background: var(--bg-accent);
+}
+
+.mood-emoji-btn:hover .emoji {
+  transform: scale(1.15);
+}
+
+/* Active States */
+.mood-emoji-btn[data-state="active"] {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+}
+
+.mood-emoji-btn[data-state="active"] .emoji {
+  transform: scale(1.15);
+}
+
+.mood-emoji-btn[data-state="active"] .emoji-label {
+  color: var(--primary-hover);
+}
+
+/* Muted States */
+.mood-emoji-btn[data-state="muted"] {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+.mood-emoji-btn[data-state="muted"]:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+.mood-note {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* History Timeline */
+.history-section {
+  padding: 32px;
+}
+
+.history-title {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+  z-index: 0;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+  padding: 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
+  margin-left: 48px;
+}
+
+.timeline-item:hover {
+  transform: translateX(8px);
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -48px;
+  /* Alignment with line */
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  font-size: 1.5rem;
+  border: 2px solid var(--border);
+  box-shadow: 0 0 0 4px var(--bg-primary);
+  /* Cut out effect */
+}
+
+/* Specific colors for specific moods */
+.timeline-item[data-mood="Great"] .timeline-dot {
+  border-color: var(--primary);
+}
+
+.timeline-item[data-mood="Good"] .timeline-dot {
+  border-color: #3b82f6;
+}
+
+.timeline-item[data-mood="Okay"] .timeline-dot {
+  border-color: #f59e0b;
+}
+
+.timeline-item[data-mood="Sad"] .timeline-dot {
+  border-color: #8b5cf6;
+}
+
+.timeline-item[data-mood="Awful"] .timeline-dot {
+  border-color: #ef4444;
+}
+
+.timeline-content {
+  flex: 1;
+}
+
+.timeline-date {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.timeline-mood {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
