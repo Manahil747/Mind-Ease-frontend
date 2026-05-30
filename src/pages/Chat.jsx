@@ -33,6 +33,7 @@ function Chat() {
         ...prev,
         { id: Date.now() + 1, sender: "ai", text: aiText }
       ]);
+    // eslint-disable-next-line no-unused-vars
     } catch (err) {
       setMessages((prev) => [
         ...prev,

@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const API = axios.create({
-    baseURL: 'http://localhost:3000'
+    // FIX: Port 3000 se badal kar 5000 kiya
+    baseURL: 'http://localhost:3000' 
 });
 
 // Har request mein automatically token lagao
