@@ -39,26 +39,32 @@ function Resources() {
         <div className="resources-grid">
           {resources.map((resource, idx) => (
             <Link
-              to={`/resources/${resource._id}`}
-              key={resource._id}
-              className={`glass-card resource-card glass-card-hoverable animate-pop-in animate-stagger-${idx + 1}`}
-            >
-              <div className="resource-image-wrapper">
-                <span className="resource-category">{resource.type}</span>
-              </div>
+  to={`/resources/${resource._id}`}
+  key={resource._id}
+  className={`glass-card resource-card glass-card-hoverable animate-pop-in animate-stagger-${idx + 1}`}
+>
+  <div className="resource-image-wrapper">
+    {resource.image ? (
+      <img 
+        src={`http://localhost:3000${resource.image}`}
+        alt={resource.title}
+        style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '12px 12px 0 0' }}
+      />
+    ) : (
+      <span className="resource-category">{resource.type}</span>
+    )}
+  </div>
 
-              <div className="resource-content">
-                <h2 className="resource-title">{resource.title}</h2>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '12px' }}>
-                  {resource.description.substring(0, 100)}...
-                </p>
-                <div className="resource-meta">
-                  <span className="read-more">
-                    Read More <FiArrowRight />
-                  </span>
-                </div>
-              </div>
-            </Link>
+  <div className="resource-content">
+    <h2 className="resource-title">{resource.title}</h2>
+    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '12px' }}>
+      {resource.description.substring(0, 100)}...
+    </p>
+    <div className="resource-meta">
+      <span className="read-more">Read More <FiArrowRight /></span>
+    </div>
+  </div>
+</Link>
           ))}
         </div>
       )}
