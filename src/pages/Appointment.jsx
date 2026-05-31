@@ -97,9 +97,24 @@ function Appointment() {
               className={`glass-card therapist-card glass-card-hoverable animate-pop-in animate-stagger-${idx + 1}`}
               data-selected={selectedTherapist?._id === therapist._id}
             >
-              <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', margin: '0 auto 16px', color: 'white' }}>
-                {therapist.name.charAt(0)}
-              </div>
+             {therapist.photo ? (
+    <img 
+        src={`http://localhost:3000${therapist.photo}`}
+        alt={therapist.name}
+        style={{ 
+        width: '80px', 
+        height: '80px', 
+        borderRadius: '50%', 
+        objectFit: 'cover',
+        objectPosition: 'top',
+        flexShrink: 0 
+    }}
+    />
+) : (
+    <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', color: 'white', flexShrink: 0 }}>
+        {therapist.name.charAt(0)}
+    </div>
+)}
               <h3 className="therapist-name">{therapist.name}</h3>
               <span className="therapist-specialty">{therapist.specialization?.join(", ")}</span>
 

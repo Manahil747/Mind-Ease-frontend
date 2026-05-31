@@ -66,8 +66,9 @@
 
 .profile-header-info {
   position: absolute;
-  bottom: -50px;
-  left: 180px;
+  bottom: -2px;
+  top:39%;
+  left: 165px;
 }
 
 .profile-name {

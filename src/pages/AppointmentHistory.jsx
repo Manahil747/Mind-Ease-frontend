@@ -35,9 +35,17 @@ function AppointmentHistory() {
 
   const renderCard = (appt, isUpcoming) => (
     <div key={appt._id} className="glass-card" style={{ padding: "24px", display: "flex", alignItems: "center", gap: "24px", marginBottom: "16px" }}>
-      <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', color: 'white', flexShrink: 0 }}>
+     {appt.therapistId?.photo ? (
+    <img
+        src={`http://localhost:3000${appt.therapistId.photo}`}
+        alt={appt.therapistId.name}
+        style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
+    />
+) : (
+    <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', color: 'white', flexShrink: 0 }}>
         {appt.therapistId?.name?.charAt(0) || "T"}
-      </div>
+    </div>
+)}
       <div style={{ flex: 1 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "8px" }}>
           <h3 style={{ fontSize: "1.25rem", color: "var(--text-primary)", fontWeight: 700 }}>

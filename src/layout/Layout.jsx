@@ -12,19 +12,23 @@ function Layout() {
   const location = useLocation();
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [userName, setUserName] = useState("");
 
-  useEffect(() => {
+
+
+  const [userName, setUserName] = useState("");
+const [userPhoto, setUserPhoto] = useState("");
+useEffect(() => {
     const fetchUser = async () => {
       try {
         const res = await API.get("/user/profile");
         setUserName(res.data.data.name);
+        setUserPhoto(res.data.data.photo || "");
       } catch (err) {
         console.log("Error:", err);
       }
     };
     fetchUser();
-  }, []);
+}, []);
 
   const menuItems = [
     { name: "Dashboard", path: "/dashboard", icon: <FiHome /> },
@@ -76,25 +80,23 @@ function Layout() {
         </nav>
 
         {/* User profile */}
-        <div
-          className="user-profile-widget animate-slide-up"
-          onClick={() => { navigate("/profile"); closeSidebar(); }}
-          title="Go to Profile"
-        >
-          <div style={{
-            width: '40px', height: '40px', borderRadius: '50%',
-            background: 'var(--primary)', display: 'flex',
-            alignItems: 'center', justifyContent: 'center',
-            color: 'white', fontWeight: 'bold', fontSize: '1.1rem',
-            flexShrink: 0
-          }}>
-            {userName?.charAt(0)?.toUpperCase()}
-          </div>
-          <div className="user-info">
-            <span className="user-name">{userName || "User"}</span>
-            <span className="user-role">View Profile</span>
-          </div>
-        </div>
+<div className="user-profile-widget animate-slide-up" onClick={() => { navigate("/profile"); closeSidebar(); }}>
+  {userPhoto ? (
+    <img 
+      src={`http://localhost:3000${userPhoto}`}
+      alt="User"
+      style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
+    />
+  ) : (
+    <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold', fontSize: '1.1rem', flexShrink: 0 }}>
+      {userName?.charAt(0)?.toUpperCase()}
+    </div>
+  )}
+  <div className="user-info">
+    <span className="user-name">{userName || "User"}</span>
+    <span className="user-role">View Profile</span>
+  </div>
+</div>
       </aside>
 
       <main className="main-content">
